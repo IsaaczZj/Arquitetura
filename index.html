@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Escola</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Gerenciamento de Escola</h1>
+    <div id="app">
+        <section>
+            <h2>Adicionar Disciplina</h2>
+            <input type="text" id="nomeDisciplina" placeholder="Nome da Disciplina">
+            <button onclick="adicionarDisciplina()">Adicionar Disciplina</button>
+        </section>
+        <section>
+            <h2>Adicionar Aluno</h2>
+            <input type="text" id="nomeAluno" placeholder="Nome do Aluno">
+            <div id="listaDisciplinas"></div>
+            <button onclick="adicionarAluno()">Adicionar Aluno</button>
+        </section>
+        <section>
+            <h2>Alunos</h2>
+            <ul id="listaAlunos"></ul>
+        </section>
+        <section>
+            <h2>Atualizar Disciplinas do Aluno</h2>
+            <select id="selecaoAluno">
+                <option>Selecione um aluno</option>
+                <!-- Opções de alunos serão preenchidas dinamicamente -->
+            </select>
+            <div id="disciplinasAluno"></div>
+            <button onclick="atualizarDisciplinasAluno()">Atualizar Disciplinas</button>
+        </section>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
