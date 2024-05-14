@@ -1,3 +1,6 @@
+
+
+
 const baseUrl = 'http://localhost:3000';
 
 async function adicionarDisciplina() {
@@ -39,11 +42,12 @@ async function carregarAlunos() {
         let response = await axios.get(`${baseUrl}/alunos`);
         const alunos = response.data;
         const listaAlunos = document.getElementById('listaAlunos');
-        listaAlunos.innerHTML = alunos.map(aluno => `<li>${aluno.nome} - ${aluno.disciplinas.join(', ')}</li>`).join('');
+        listaAlunos.innerHTML = alunos.map(aluno => `<li>${aluno.nome} - ${aluno.disciplinas.join(', ')} <button onclick="removerAluno('${aluno.id}')">Remover</button></li>`).join('');
     } catch (error) {
         console.error('Erro ao carregar alunos');
     }
 }
+
 async function carregarAlunosSelect() {
     try {
         const response = await axios.get(`${baseUrl}/alunos`);
@@ -58,7 +62,6 @@ async function carregarAlunosSelect() {
     }
 }
 
-// Event listener para selecionar um aluno e carregar suas disciplinas
 document.getElementById('selecaoAluno').addEventListener('change', async (e) => {
     const alunoId = e.target.value;
     const response = await axios.get(`${baseUrl}/alunos/${alunoId}`);
@@ -68,7 +71,7 @@ document.getElementById('selecaoAluno').addEventListener('change', async (e) => 
     aluno.disciplinas.forEach(disciplina => {
         disciplinasAluno.innerHTML += `<label><input type="checkbox" name="disciplina" value="${disciplina.id}" checked> ${disciplina.nome}</label><br>`;
     });
-    carregarDisciplinas(); // Recarrega todas as disciplinas para possíveis adições
+    carregarDisciplinas();
 });
 
 async function atualizarDisciplinasAluno() {
@@ -77,17 +80,26 @@ async function atualizarDisciplinasAluno() {
     try {
         await axios.put(`${baseUrl}/alunos/${alunoId}`, { disciplinas: disciplinasSelecionadas });
         alert('Disciplinas atualizadas com sucesso!');
-        carregarAlunos(); // Recarrega lista de alunos
-        carregarAlunosSelect(); // Recarrega seleção de alunos
+        carregarAlunos();
+        carregarAlunosSelect();
     } catch (error) {
         alert('Erro ao atualizar disciplinas do aluno!');
     }
 }
 
-// Inicialização para carregar alunos no <select>
+async function removerAluno(alunoId) {
+    try {
+        await axios.delete(`${baseUrl}/alunos/${alunoId}`);
+        alert('Aluno removido com sucesso!');
+        carregarAlunos();
+        carregarAlunosSelect();
+    } catch (error) {
+        alert('Erro ao remover aluno!');
+    }
+}
+
 carregarAlunosSelect();
-
-
-// Inicializar dados
 carregarDisciplinas();
 carregarAlunos();
+
+

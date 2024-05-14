@@ -1,21 +1,17 @@
 {
-  "alunos": [
-    {
-      "id": "c5b8",
-      "nome": "AFONSO KITBOTA",
-      "disciplinas": [
-        "mat"
-      ]
-    }
-  ],
+  "alunos": [],
   "disciplinas": [
     {
-      "id": "06c0",
-      "nome": "mat"
+      "id": "1939",
+      "nome": "MAT"
     },
     {
-      "id": "8a74",
-      "nome": "dadad"
+      "id": "fddf",
+      "nome": "da"
+    },
+    {
+      "id": "2b3f",
+      "nome": "mat"
     }
   ]
 }
